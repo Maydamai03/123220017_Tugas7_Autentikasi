@@ -3,18 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh; /* Agar card berada di tengah halaman */
-    padding-bottom: 0px;
+    height: 80vh; 
+    padding-bottom: 180px;
 }
 
 /* Styling Card */
 .card2 {
-    background: #071a2d; /* Warna background card */
-    color: #dde99a; /* Warna teks */
+    background: #071a2d; 
+    color: #dde99a; 
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Efek bayangan */
-    width: 50%; /* Lebar card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 50%; 
 }
 .card2 label{
 

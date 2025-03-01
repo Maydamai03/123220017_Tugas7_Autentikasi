@@ -1,4 +1,6 @@
 // Fungsi untuk menyimpan catatan (add note)
+
+
 async function saveUser(event) {
     event.preventDefault();
     const title = document.getElementById("title").value;

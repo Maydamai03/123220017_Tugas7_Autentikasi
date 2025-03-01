@@ -1,15 +1,13 @@
 /* General Styling */
 body {
     background-color: #dee9f3;
-    color: #333; /* Warna teks */
-    font-family: 'Poppins', sans-serif; /* Gunakan font Poppins atau sans-serif */
-    font-size: 16px; /* Ukuran font */
-    line-height: 1.6; /* Jarak antar baris */
+    color: #333; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 16px; 
+    line-height: 1.6; 
     margin: 0;
     padding: 0;
 }
-
-/* Navbar Styling */
 
 
 /* Container */
@@ -24,7 +22,7 @@ body {
     background: #071a2d;
     color: #f8fffb;
     border-radius: 8px;
-    box-shadow: 0 17px 10px rgba(7, 57, 90, 0.5); /* Bayangan default */
+    box-shadow: 0 17px 10px rgba(7, 57, 90, 0.5); /* Bayangan sebelum hover */
     padding: 20px;
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
