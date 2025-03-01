@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Note</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+
+    <div id="navbar-container"></div>
+
+
+    <!-- Main Session y -->
+    <div class="container2">
+        <div class="card2">
+            <form onsubmit="saveUser(event)">
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control">
+                        <input type="text" class="input" id="title" placeholder="title">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Category</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="category">
+                                <option value="Penting">Penting</option>
+                                <option value="Sedang">Sedang</option>
+                                <option value="Tidak Penting">Tidak Penting</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Text</label>
+                    <div class="control">
+                        <input type="text" class="input" id="text" placeholder="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <button type="submit" class="button is-success mt-4">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+
+        .button.is-success {
+            background-color: #3c658e;
+            color: #edf2d1;
+        }
+
+        .button.is-success:hover {
+            background-color: #9fdfff;
+            color: #0e0e0e;
+
+        }
+    </style>
+
+
+
+    
+    <script src="../backend/backend.js"></script>
+
+    <script src="navbar.js"></script>
+
+</body>
+
+</html>
