@@ -9,6 +9,6 @@ handlers:
 
   - url: /(.*)
     static_files: \1
-    upload: (.*)
+    upload: \1
 
 default_expiration: "1h"  # Waktu cache default
