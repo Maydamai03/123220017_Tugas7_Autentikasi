@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="container">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="#">MayNOTES</a>
+                    <a class="navbar-item" href="#">MayNOTES Test PaaS</a>
                     
                     <!-- Tombol hamburger -->
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
