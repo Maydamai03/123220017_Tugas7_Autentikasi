@@ -5,6 +5,6 @@ import UserRoute from "./routes/UserRoute.js"
 const app = express ();
 app.use(cors());
 app.use(express.json());
+app.get("/", (req, res) => res.render("index"));
 app.use(UserRoute);
-
-app.listen(5000, ()=> console.log('Server up And RUNNINGGG'));
+app.listen(5000, ()=> console.log('Server up And RUNNINGGG'));  

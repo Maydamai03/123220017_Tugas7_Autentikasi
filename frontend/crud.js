@@ -1,3 +1,6 @@
+const BASE_URL = "http://localhost:5000";
+
+
 // Fungsi untuk menyimpan catatan (add note)
 
 
@@ -8,7 +11,7 @@ async function saveUser(event) {
     const text = document.getElementById("text").value;
 
     try {
-        await fetch("http://localhost:5000/users", {
+        await fetch(`${BASE_URL}/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -19,7 +22,7 @@ async function saveUser(event) {
                 text
             })
         });
-        window.location.href = "../frontend/home.html"; // buat arahin home setelah selesai submit
+        window.location.href = "home.html"; // buat arahin home setelah selesai submit
     } catch (error) {
         console.error("Error saving user:", error);
     }
@@ -29,7 +32,7 @@ async function saveUser(event) {
 // Fungsi untuk mengambil daftar catatan
 async function getUsers() {
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch(`${BASE_URL}/users`);
         let users = await response.json();
 
         // Ngurutin ID terbesar ke terkecil
@@ -70,7 +73,7 @@ async function getUsers() {
 // Fungsi untuk menghapus catatan
 async function deleteUser(id) {
     try {
-        await fetch(`http://localhost:5000/users/${id}`, {
+        await fetch(`${BASE_URL}/users/${id}`, {
             method: "DELETE"
         });
         getUsers(); // Refresh daftar catatan setelah menghapus
@@ -83,7 +86,7 @@ async function deleteUser(id) {
 // Fungsi untuk mengambil data pengguna berdasarkan ID 
 async function getUserById(id) {
     try {
-        const response = await fetch(`http://localhost:5000/users/${id}`);
+        const response = await fetch(`${BASE_URL}/users/${id}`);
         return await response.json();
     } catch (error) {
         console.error("Error fetching user:", error);
@@ -98,7 +101,7 @@ async function updateUser(event, id) {
     const text = document.getElementById("text").value;
 
     try {
-        await fetch(`http://localhost:5000/users/${id}`, {
+        await fetch(`${BASE_URL}/users/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -109,7 +112,7 @@ async function updateUser(event, id) {
                 text
             })
         });
-        window.location.href = "../frontend/home.html";
+        window.location.href = "home.html";
     } catch (error) {
         console.error("Error updating user:", error);
     }
