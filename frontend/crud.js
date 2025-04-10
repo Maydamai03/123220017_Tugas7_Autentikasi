@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://be-notes-17-296685597625.us-central1.run.app/users";
 
 
 // Fungsi untuk menyimpan catatan (add note)
