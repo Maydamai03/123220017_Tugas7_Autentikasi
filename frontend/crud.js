@@ -1,4 +1,4 @@
-const BASE_URL = "https://be-notes-17-296685597625.us-central1.run.app/users";
+const BASE_URL = "https://be-notes-17-296685597625.us-central1.run.app";
 
 
 // Fungsi untuk menyimpan catatan (add note)
