@@ -3,17 +3,21 @@ import db from "../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const User = db.define('users',{
+// models/UserModel.js
+const User = db.define('users', {
     title: DataTypes.STRING,
     category: DataTypes.STRING,
     text: DataTypes.STRING,
-    }, {
-        freezeTableName:true,
-        //timestamps:false
-        createdAt: 'tanggal dibuat',
-        updatedAt: 'tanggal diubah',
- 
-    });
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+}, {
+    freezeTableName: true,
+    createdAt: 'tanggal dibuat',
+    updatedAt: 'tanggal diubah',
+});
+
 
     export default User;
 

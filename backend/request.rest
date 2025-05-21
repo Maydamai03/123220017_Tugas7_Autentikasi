@@ -1,4 +1,5 @@
 GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTc0Nzg0NDczNSwiZXhwIjoxNzQ3ODQ0NzQ1fQ.bEeE9h15DW_Cu7PHiPSC34eM3FyiAFf1h7iFEEN9L3w
 
 ###
 GET http://localhost:5000/users/1
@@ -6,6 +7,7 @@ GET http://localhost:5000/users/1
 ###
 POST http://localhost:5000/users/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTc0Nzg0NDcwNiwiZXhwIjoxNzQ3ODQ1NjA2fQ.4Cxn3p-Zqes5y5RY_-waYeObb18SvTGDoL2XBWMtgYs
 
 {
 "title": "Gacha Collector YSS",
@@ -28,7 +30,8 @@ DELETE  http://localhost:5000/users/3
 
 ### 
 GET http://localhost:5000/auth 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsInVzZXJuYW1lIjoidGVzdCIsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTc0Nzg0MDUxMywiZXhwIjoxNzQ3ODQwNTMzfQ.JmYg6CdlUr7aS494V23sby1VT9B6jdL3vhFePWjENG0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzQGdtYWlsLmNvbSIsImlhdCI6MTc0Nzg0NDQ1MCwiZXhwIjoxNzQ3ODQ1MzUwfQ.kIf4fZgluRJFd51CMkO2DxbyRaU8yFEeMf-jSh0pSws
+
 
 ### 
 POST http://localhost:5000/auth 

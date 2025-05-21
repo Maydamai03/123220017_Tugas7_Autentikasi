@@ -1,15 +1,20 @@
 import User from "../models/UserModel.js";
 
-export const getUsers = async(req, res)=>{
+// get all notes milik user yang sedang login
+export const getUsers = async (req, res) => {
     try {
-        const response = await User.findAll();
+        const response = await User.findAll({
+            where: {
+                userId: req.userId   // hanya ambil note milik user ini
+            }
+        });
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: "Terjadi kesalahan server" });
     }
-
-
 }
+
 
 export const getUsersById = async(req, res)=>{
     try {
@@ -28,15 +33,22 @@ export const getUsersById = async(req, res)=>{
 }
 
 //CREATE
-export const createUser = async(req,res) => {
+export const createUser = async (req, res) => {
     try {
-       await User.create(req.body);
-       res.status(201).json({msg:"User Created"}) 
+        await User.create({
+            title: req.body.title,
+            category: req.body.category,
+            text: req.body.text,
+            userId: req.userId   // ⬅️ WAJIB ADA INI
+        });
+        res.status(201).json({ msg: "Note Created" });
     } catch (error) {
-        
+        console.error(error.message);
+        res.status(500).json({ msg: error.message });
     }
+};
 
-}
+
 
 //UPDATE
 export const updateUser = async (req,res) => {
