@@ -1,42 +1,35 @@
-const BASE_URL = "https://be-notes-17-296685597625.us-central1.run.app";
+const BASE_URL = "http://localhost:5000"; 
 
+// Ambil token dari localStorage
+const token = localStorage.getItem('accessToken');
 
-// Fungsi untuk menyimpan catatan (add note)
-
-
-async function saveUser(event) {
-    event.preventDefault();
-    const title = document.getElementById("title").value;
-    const category = document.getElementById("category").value;
-    const text = document.getElementById("text").value;
-
-    try {
-        await fetch(`${BASE_URL}/users`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title,
-                category,
-                text
-            })
-        });
-        window.location.href = "home.html"; // buat arahin home setelah selesai submit
-    } catch (error) {
-        console.error("Error saving user:", error);
-    }
+// Cek kalau tidak ada token → redirect ke login
+if (!token && (window.location.pathname.includes('home.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/'))) {
+    window.location.href = 'login.html';
 }
 
+// Fungsi untuk logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('accessToken');
+        window.location.href = 'login.html';
+    });
+}
 
-// Fungsi untuk mengambil daftar catatan
+// Fungsi ambil semua catatan
 async function getUsers() {
     try {
-        const response = await fetch(`${BASE_URL}/users`);
-        let users = await response.json();
+        const response = await fetch(`${BASE_URL}/users`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
-        // Ngurutin ID terbesar ke terkecil
-        users.sort((a, b) => b.id - a.id);
+        if (!response.ok) throw new Error("Token invalid");
+
+        let users = await response.json();
+        users.sort((a, b) => b.id - a.id); // urut dari terbaru
 
         const userList = document.getElementById("user-list");
         userList.innerHTML = "";
@@ -53,47 +46,87 @@ async function getUsers() {
                         <p>${user.text}</p>
                     </div>
                     <footer class="card-footer">
-                        <a href="edit.html?id=${user.id}" class="card-footer-item button is-small is-info">
-                            <span class="icon"><i class="fas fa-pencil-alt mr-4"></i></span> Edit
-                        </a>
-                        <button onclick="deleteUser(${user.id})" class="card-footer-item button is-small is-danger">
-                            <span class="icon"><i class="fas fa-trash mr-4"></i></span> Delete
-                        </button>
+                        <a href="edit.html?id=${user.id}" class="card-footer-item button is-small is-info">Edit</a>
+                        <button onclick="deleteUser(${user.id})" class="card-footer-item button is-small is-danger">Delete</button>
                     </footer>
                 </div>
-
             `;
             userList.appendChild(userCard);
         });
     } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error:", error);
+        localStorage.removeItem('accessToken');
+        alert("Session habis. Silakan login lagi.");
+        window.location.href = "login.html";
     }
 }
 
-// Fungsi untuk menghapus catatan
-async function deleteUser(id) {
+// Tambah catatan
+async function saveUser(event) {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+    const category = document.getElementById("category").value;
+    const text = document.getElementById("text").value;
+
     try {
-        await fetch(`${BASE_URL}/users/${id}`, {
-            method: "DELETE"
+        const response = await fetch(`${BASE_URL}/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ title, category, text })
         });
-        getUsers(); // Refresh daftar catatan setelah menghapus
+
+        if (!response.ok) throw new Error("Gagal menyimpan");
+
+        window.location.href = "home.html";
     } catch (error) {
-        console.error("Error deleting user:", error);
+        console.error("Error:", error);
+        alert("Gagal menyimpan catatan. Login ulang.");
     }
 }
 
+// Hapus catatan
+async function deleteUser(id) {
+    if (!confirm("Yakin ingin menghapus catatan ini?")) return;
 
-// Fungsi untuk mengambil data pengguna berdasarkan ID 
+    try {
+        const response = await fetch(`${BASE_URL}/users/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) throw new Error("Gagal menghapus");
+
+        getUsers();
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Gagal hapus. Coba login ulang.");
+    }
+}
+
+// Ambil data satu catatan
 async function getUserById(id) {
     try {
-        const response = await fetch(`${BASE_URL}/users/${id}`);
+        const response = await fetch(`${BASE_URL}/users/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) throw new Error("Token invalid");
+
         return await response.json();
     } catch (error) {
-        console.error("Error fetching user:", error);
+        console.error("Error:", error);
+        window.location.href = "login.html";
     }
 }
 
-// Fungsi untuk mengupdate catatan (edit note)
+// Update catatan
 async function updateUser(event, id) {
     event.preventDefault();
     const title = document.getElementById("title").value;
@@ -101,19 +134,27 @@ async function updateUser(event, id) {
     const text = document.getElementById("text").value;
 
     try {
-        await fetch(`${BASE_URL}/users/${id}`, {
+        const response = await fetch(`${BASE_URL}/users/${id}`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify({
-                title,
-                category,
-                text
-            })
+            body: JSON.stringify({ title, category, text })
         });
+
+        if (!response.ok) throw new Error("Gagal update");
+
         window.location.href = "home.html";
     } catch (error) {
-        console.error("Error updating user:", error);
+        console.error("Error:", error);
+        alert("Gagal update. Silakan login ulang.");
     }
+}
+
+// Auto-fetch data saat buka home
+if (window.location.pathname.includes("home.html")) {
+    document.addEventListener("DOMContentLoaded", () => {
+        getUsers();
+    });
 }

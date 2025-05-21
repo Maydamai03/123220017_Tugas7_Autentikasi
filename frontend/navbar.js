@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a class="navbar-item has-text-black" href="home.html">Home</a>
                         <a class="navbar-item has-text-black" href="about_us.html">About Me</a>
                     </div>
+
+                    <!-- Tombol Logout di pojok kanan -->
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <button id="logoutBtn" class="button is-danger has-text-white">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -38,6 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 transform: translateX(-50%);
                 display: flex;
                 gap: 20px;
+            }
+
+            .navbar-end {
+                margin-left: auto;
             }
 
             /* style untuk tombol hamburger */
@@ -67,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     display: block;
                 }
 
-                /* memastikan menu tetap berada di tengah saat responsif */
                 .navbar-center {
                     position: static;
                     transform: none;
@@ -75,15 +87,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     align-items: center;
                     gap: 10px;
                 }
+
+                .navbar-end {
+                    margin-left: 0;
+                    margin-top: 10px;
+                }
             }
         </style>
     `;
 
     document.getElementById("navbar-container").innerHTML = navbarHTML;
 
-    // Tambahkan event listener ke tombol hamburger
+    // Toggle menu saat hamburger diklik
     document.querySelector(".navbar-burger").addEventListener("click", function () {
         const menu = document.getElementById("navbar-menu");
         menu.classList.toggle("is-active");
     });
+
+    // Event logout
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("accessToken");
+            window.location.href = "login.html";
+        });
+    }
 });
