@@ -1,4 +1,4 @@
-const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app";
+// const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app";
 
 document.addEventListener("DOMContentLoaded", () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutBtn = navbarContainer.querySelector("#logoutBtn");
     logoutBtn.addEventListener("click", async () => {
       try {
-        await fetch(`${BASE_URL}/logout`, {
+        await fetch(`https://be-notes-17-t7-296685597625.us-central1.run.app/logout`, {
           method: "DELETE",
           credentials: "include",
         });
