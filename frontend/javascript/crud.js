@@ -9,14 +9,14 @@ if (!token && (window.location.pathname.includes('/pages/home.html') || window.l
     window.location.href = '/pages/login.html';
 }
 
-// // Fungsi untuk logout
-// const logoutBtn = document.getElementById('logoutBtn');
-// if (logoutBtn) {
-//     logoutBtn.addEventListener('click', () => {
-//         localStorage.removeItem('accessToken');
-//         window.location.href = '/pages/login.html';
-//     });
-// }
+// Fungsi untuk logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('accessToken');
+        window.location.href = '/pages/login.html';
+    });
+}
 
 // Fungsi ambil semua catatan
 async function getUsers() {
