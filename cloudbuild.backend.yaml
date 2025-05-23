@@ -1,12 +1,12 @@
 steps:
   # 1. Build Docker image untuk backend
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/be-notes-17-T7", "."]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/be-notes-17-t7", "."]
     dir: "backend"
 
   # 2. Push ke Container Registry / Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/be-notes-17-T7"]
+    args: ["push", "gcr.io/$PROJECT_ID/be-notes-17-t7"]
 
   # 3. Deploy ke Cloud Run
   - name: "gcr.io/cloud-builders/gcloud"
@@ -15,9 +15,9 @@ steps:
       [
         "run",
         "deploy",
-        "be-notes-17-T7",
+        "be-notes-17-t7",
         "--image",
-        "gcr.io/$PROJECT_ID/be-notes-17-T7",
+        "gcr.io/$PROJECT_ID/be-notes-17-t7",
         "--timeout",
         "1000s",
         "--port",
