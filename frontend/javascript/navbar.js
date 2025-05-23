@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </style>
     `;
 
-   document.getElementById("navbar-container").innerHTML = navbarHTML;
+    document.getElementById("navbar-container").innerHTML = navbarHTML;
 
     // Toggle menu saat hamburger diklik
     document.querySelector(".navbar-burger").addEventListener("click", function () {
@@ -98,20 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("is-active");
     });
 
-    // Pasang event listener logout **setelah tombol ada di DOM**
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-        try {
-          await fetch("https://be-notes-17-t7-296685597625.us-central1.run.app/logout", {
-            method: 'DELETE',
-            credentials: 'include',  // agar cookie refresh token terhapus juga
-          });
-        } catch (error) {
-          console.error("Logout error:", error);
-        }
-        localStorage.removeItem('accessToken');
-        window.location.href = '/pages/login.html';
-      });
-    }
+    // // Event logout
+    // const logoutBtn = document.getElementById("logoutBtn");
+    // if (logoutBtn) {
+    //     logoutBtn.addEventListener("click", () => {
+    //         localStorage.removeItem("accessToken");
+    //         window.location.href = "/pages/login.html";
+    //     });
+    // }
 });
