@@ -1,17 +1,18 @@
-// const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
+const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app";
 
-// Login
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  // Hapus token lama dulu biar aman
+  localStorage.removeItem("accessToken");
+
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
-      credentials: "include",   // penting kalau server kirim cookie
+      credentials: "include", // supaya cookie refresh token ikut
       headers: {
         "Content-Type": "application/json"
       },
@@ -22,11 +23,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (!response.ok) throw new Error(data.msg || "Login gagal");
 
-    localStorage.setItem("accessToken", data.accessToken); // simpan token kalau perlu
+    localStorage.setItem("accessToken", data.accessToken);
     alert("Login berhasil!");
-    window.location.href = "/pages/home.html";  // arahkan ke halaman home
+    window.location.href = "/pages/home.html";
   } catch (error) {
     alert("Login gagal: " + error.message);
   }
 });
-
