@@ -4,11 +4,11 @@ instance_class: F1  # Kelas instance untuk App Engine (F1 adalah kelas standar y
 
 handlers:
   - url: /
-    static_files: pages/home.html
-    upload: pages/home.html
+    static_files: frontend/pages/home.html
+    upload: frontend/pages/home.html
 
   - url: /(.*)
-    static_files: \1
-    upload: (.*)
+    static_files: frontend/\1
+    upload: frontend/(.*)
 
 default_expiration: "1h"  # Waktu cache default
