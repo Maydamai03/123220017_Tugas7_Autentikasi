@@ -1,5 +1,5 @@
 // const BASE_URL = "http://localhost:5000"; 
-const BASE_URL = "https://backendnotemay-296685597625.us-central1.run.app"; 
+const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
 
 // Ambil token dari localStorage
 const token = localStorage.getItem('accessToken');
