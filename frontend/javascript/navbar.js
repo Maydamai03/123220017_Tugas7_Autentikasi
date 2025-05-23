@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const navbarHTML = `
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+       <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="#">MayNOTES</a>
-                    
-                    <!-- Tombol hamburger -->
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -13,19 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     </a>
                 </div>
 
-                <!-- Menu Utama -->
                 <div id="navbar-menu" class="navbar-menu">
                     <div class="navbar-start navbar-center">
                         <a class="navbar-item has-text-black" href="home.html">Home</a>
                         <a class="navbar-item has-text-black" href="about_us.html">About Me</a>
                     </div>
 
-                    <!-- Tombol Logout di pojok kanan -->
                     <div class="navbar-end">
                         <div class="navbar-item">
-                            <button id="logoutBtn" class="button is-danger has-text-white">
-                                Logout
-                            </button>
+                            <button id="logoutBtn" class="button is-danger has-text-white">Logout</button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </style>
     `;
 
-    document.getElementById("navbar-container").innerHTML = navbarHTML;
+   document.getElementById("navbar-container").innerHTML = navbarHTML;
 
     // Toggle menu saat hamburger diklik
     document.querySelector(".navbar-burger").addEventListener("click", function () {
@@ -104,12 +98,20 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("is-active");
     });
 
-    // // Event logout
-    // const logoutBtn = document.getElementById("logoutBtn");
-    // if (logoutBtn) {
-    //     logoutBtn.addEventListener("click", () => {
-    //         localStorage.removeItem("accessToken");
-    //         window.location.href = "/pages/login.html";
-    //     });
-    // }
+    // Pasang event listener logout **setelah tombol ada di DOM**
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          await fetch("https://be-notes-17-t7-296685597625.us-central1.run.app/logout", {
+            method: 'DELETE',
+            credentials: 'include',  // agar cookie refresh token terhapus juga
+          });
+        } catch (error) {
+          console.error("Logout error:", error);
+        }
+        localStorage.removeItem('accessToken');
+        window.location.href = '/pages/login.html';
+      });
+    }
 });
