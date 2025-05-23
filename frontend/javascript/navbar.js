@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
             localStorage.removeItem("accessToken");
-            window.location.href = "/frontend/pages/login.html";
+            window.location.href = "/pages/login.html";
         });
     }
 });
