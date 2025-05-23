@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors({ credentials: true, origin: 'http://127.0.0.1:5500' }));
+app.use(cors({ credentials: true, origin: 'https://fe-may-t7-dot-projekcc017033.uc.r.appspot.com' }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);
