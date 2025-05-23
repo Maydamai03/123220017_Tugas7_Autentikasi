@@ -9,7 +9,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   localStorage.removeItem("accessToken");
 
   try {
-    const response = await fetch(`https://be-notes-17-t7-296685597625.us-central1.run.app/login`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       credentials: "include", // supaya cookie refresh token ikut
       headers: {
