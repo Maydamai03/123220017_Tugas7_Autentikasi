@@ -1,3 +1,6 @@
+
+const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
+
 document.addEventListener("DOMContentLoaded", function () {
     const navbarHTML = `
        <nav class="navbar" role="navigation" aria-label="main navigation">
