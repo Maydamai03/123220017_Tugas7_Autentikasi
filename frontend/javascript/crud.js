@@ -23,21 +23,21 @@ if (!isTokenValid(token) && (window.location.pathname.includes('/pages/home.html
 }
 
 // Fungsi logout jadinya di navbar.js, panggil API backend logout, hapus token, lalu redirect login
-// const logoutBtn = document.getElementById('logoutBtn');
-// if (logoutBtn) {
-//   logoutBtn.addEventListener('click', async () => {
-//     try {
-//       await fetch(`${BASE_URL}/logout`, {
-//         method: 'DELETE',
-//         credentials: 'include',  // penting supaya cookie refresh token ikut kehapus
-//       });
-//     } catch (error) {
-//       console.error("Logout error:", error);
-//     }
-//     localStorage.removeItem('accessToken');
-//     window.location.href = '/pages/login.html';
-//   });
-// }
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', async () => {
+    try {
+      await fetch(`${BASE_URL}/logout`, {
+        method: 'DELETE',
+        credentials: 'include',  // penting supaya cookie refresh token ikut kehapus
+      });
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+    localStorage.removeItem('accessToken');
+    window.location.href = '/pages/login.html';
+  });
+}
 
 // Fungsi ambil semua catatan
 async function getUsers() {
