@@ -1,5 +1,4 @@
-
-const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
+const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app";
 
 document.addEventListener("DOMContentLoaded", function () {
     const navbarHTML = `
@@ -93,28 +92,31 @@ document.addEventListener("DOMContentLoaded", function () {
         </style>
     `;
 
-    document.getElementById("navbar-container").innerHTML = navbarHTML;
+    // Masukkan navbar ke container
+    const container = document.getElementById("navbar-container");
+    container.innerHTML = navbarHTML;
 
-    // Toggle menu saat hamburger diklik
-    document.querySelector(".navbar-burger").addEventListener("click", function () {
-        const menu = document.getElementById("navbar-menu");
+    // Toggle hamburger menu
+    container.querySelector(".navbar-burger").addEventListener("click", function () {
+        const menu = container.querySelector("#navbar-menu");
         menu.classList.toggle("is-active");
     });
 
-    // **Event logout pindah ke sini supaya tombol sudah pasti ada**
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-        try {
-          await fetch(`${BASE_URL}/logout`, {
-            method: 'DELETE',
-            credentials: 'include',
-          });
-        } catch (error) {
-          console.error("Logout error:", error);
+    // Pasang event delegation untuk logout
+    container.addEventListener("click", function (event) {
+        if (event.target && event.target.id === "logoutBtn") {
+            (async () => {
+                try {
+                    await fetch(`${BASE_URL}/logout`, {
+                        method: 'DELETE',
+                        credentials: 'include',
+                    });
+                } catch (error) {
+                    console.error("Logout error:", error);
+                }
+                localStorage.removeItem('accessToken');
+                window.location.href = '/pages/login.html';
+            })();
         }
-        localStorage.removeItem('accessToken');
-        window.location.href = '/pages/login.html';
-      });
-    }
+    });
 });
