@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const navbarHTML = `
        <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -100,20 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("is-active");
     });
 
-    // **Event logout pindah ke sini supaya tombol sudah pasti ada**
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-        try {
-          await fetch(`${BASE_URL}/logout`, {
-            method: 'DELETE',
-            credentials: 'include',
-          });
-        } catch (error) {
-          console.error("Logout error:", error);
-        }
-        localStorage.removeItem('accessToken');
-        window.location.href = '/pages/login.html';
-      });
-    }
+    // // Event logout
+    // const logoutBtn = document.getElementById("logoutBtn");
+    // if (logoutBtn) {
+    //     logoutBtn.addEventListener("click", () => {
+    //         localStorage.removeItem("accessToken");
+    //         window.location.href = "/pages/login.html";
+    //     });
+    // }
 });
