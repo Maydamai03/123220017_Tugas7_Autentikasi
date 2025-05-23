@@ -24,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     localStorage.setItem("accessToken", data.accessToken); // simpan token kalau perlu
     alert("Login berhasil!");
-    window.location.href = "../pages/home.html";  // arahkan ke halaman home
+    window.location.href = "/pages/home.html";  // arahkan ke halaman home
   } catch (error) {
     alert("Login gagal: " + error.message);
   }
