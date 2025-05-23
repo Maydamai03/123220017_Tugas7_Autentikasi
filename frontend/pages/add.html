@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Note</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="../style/crud.css">
+    <link rel="stylesheet" href="../style/style.css">
+
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    <h1 class="title has-text-centered mt-5" style="color: #071a2d;font-weight: bold;">Tambah Catatan</h1>
+
+    <!-- Main Section -->
+    <div class="container2">
+        <!-- Head Title -->
+
+        <div class="card2">
+            <form onsubmit="saveUser(event)">
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control">
+                        <input type="text" class="input" id="title" placeholder="title">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Category</label>
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="category">
+                                <option value="Penting">Penting</option>
+                                <option value="Sedang">Sedang</option>
+                                <option value="Tidak Penting">Tidak Penting</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Text</label>
+                    <div class="control">
+                        <input type="text" class="input" id="text" placeholder="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <button type="submit" class="button is-success mt-4">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        /* Styling Button */
+        .button.is-success {
+            background-color: #3c658e;
+            color: #edf2d1;
+        }
+
+        .button.is-success:hover {
+            background-color: #9fdfff;
+            color: #0e0e0e;
+        }
+
+        /* Styling Head Title */
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dde99a;
+        }
+    </style>
+
+    <script src="../javascript/crud.js"></script>
+    <script src="../javascript/navbar.js"></script>
+
+</body>
+
+
+</html>

@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:5000"; // ganti sesuai server kamu
+// const BASE_URL = "http://localhost:5000"; 
+const BASE_URL = "https://backendnotemay-296685597625.us-central1.run.app"; 
+
 
 // Register
 document.getElementById("registerForm").addEventListener("submit", async (e) => {

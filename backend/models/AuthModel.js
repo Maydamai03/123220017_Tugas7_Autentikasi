@@ -8,7 +8,7 @@ const {
 } = Sequelize;
 
 const Auth = db.define(
-    "Authen", {
+    "authen", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,

@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:5000"; // ganti sesuai server kamu
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://backendnotemay-296685597625.us-central1.run.app"; 
 
 // Login
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
@@ -23,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     localStorage.setItem("accessToken", data.accessToken); // simpan token kalau perlu
     alert("Login berhasil!");
-    window.location.href = "home.html";  // arahkan ke halaman home
+    window.location.href = "../pages/home.html";  // arahkan ke halaman home
   } catch (error) {
     alert("Login gagal: " + error.message);
   }

@@ -4,26 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Note</title>
+    <title>Edit Note</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="crud.css">
-    <link rel="stylesheet" href="style.css">
-
-
+    <link rel="stylesheet" href="../style/crud.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
-
     <!-- Navbar -->
     <div id="navbar-container"></div>
-    <h1 class="title has-text-centered mt-5" style="color: #071a2d;font-weight: bold;">Tambah Catatan</h1>
+    <h1 class="title has-text-centered mt-5" style="color: #071a2d;font-weight: bold;">Edit Catatan</h1>
 
-    <!-- Main Section -->
+    <!-- Main Session -->
     <div class="container2">
-        <!-- Head Title -->
-
         <div class="card2">
-            <form onsubmit="saveUser(event)">
+            <form onsubmit="updateUser(event, userId)">
                 <div class="field">
                     <label class="label">Title</label>
                     <div class="control">
@@ -56,7 +51,6 @@
     </div>
 
     <style>
-        /* Styling Button */
         .button.is-success {
             background-color: #3c658e;
             color: #edf2d1;
@@ -66,19 +60,25 @@
             background-color: #9fdfff;
             color: #0e0e0e;
         }
-
-        /* Styling Head Title */
-        .title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #dde99a;
-        }
     </style>
 
-    <script src="crud.js"></script>
-    <script src="navbar.js"></script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get("id");
+
+        async function loadUserData() {
+            const user = await getUserById(userId);
+            document.getElementById("title").value = user.title;
+            document.getElementById("category").value = user.category;
+            document.getElementById("text").value = user.text;
+        }
+
+        document.addEventListener("DOMContentLoaded", loadUserData);
+    </script>
+    <script src="../javascript/crud.js"></script>
+    <script src="../javascript/navbar.js"></script>
 
 </body>
-
 
 </html>
