@@ -104,12 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("is-active");
     });
 
-    // Event logout
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("accessToken");
-            window.location.href = "/pages/login.html";
-        });
-    }
+    // // Event logout
+    // const logoutBtn = document.getElementById("logoutBtn");
+    // if (logoutBtn) {
+    //     logoutBtn.addEventListener("click", () => {
+    //         localStorage.removeItem("accessToken");
+    //         window.location.href = "/pages/login.html";
+    //     });
+    // }
 });
