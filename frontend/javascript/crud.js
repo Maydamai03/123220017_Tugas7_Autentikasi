@@ -5,8 +5,8 @@ const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app";
 const token = localStorage.getItem('accessToken');
 
 // Cek kalau tidak ada token → redirect ke login
-if (!token && (window.location.pathname.includes('/frontend/pages/home.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/'))) {
-    window.location.href = '/frontend/pages/login.html';
+if (!token && (window.location.pathname.includes('/pages/home.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/'))) {
+    window.location.href = '/pages/login.html';
 }
 
 // Fungsi untuk logout
@@ -14,7 +14,7 @@ const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
         localStorage.removeItem('accessToken');
-        window.location.href = '/frontend/pages/login.html';
+        window.location.href = '/pages/login.html';
     });
 }
 
@@ -58,7 +58,7 @@ async function getUsers() {
         console.error("Error:", error);
         localStorage.removeItem('accessToken');
         alert("Session habis. Silakan login lagi.");
-        window.location.href = "/frontend/pages/login.html";
+        window.location.href = "/pages/login.html";
     }
 }
 
@@ -81,7 +81,7 @@ async function saveUser(event) {
 
         if (!response.ok) throw new Error("Gagal menyimpan");
 
-        window.location.href = "/frontend/pages/home.html";
+        window.location.href = "/pages/home.html";
     } catch (error) {
         console.error("Error:", error);
         alert("Gagal menyimpan catatan. Login ulang.");
@@ -123,7 +123,7 @@ async function getUserById(id) {
         return await response.json();
     } catch (error) {
         console.error("Error:", error);
-        window.location.href = "/frontend/pages/login.html";
+        window.location.href = "/pages/login.html";
     }
 }
 
@@ -146,7 +146,7 @@ async function updateUser(event, id) {
 
         if (!response.ok) throw new Error("Gagal update");
 
-        window.location.href = "/frontend/pages/home.html";
+        window.location.href = "/pages/home.html";
     } catch (error) {
         console.error("Error:", error);
         alert("Gagal update. Silakan login ulang.");
@@ -154,7 +154,7 @@ async function updateUser(event, id) {
 }
 
 // Auto-fetch data saat buka home
-if (window.location.pathname.includes("/frontend/pages/home.html")) {
+if (window.location.pathname.includes("/pages/home.html")) {
     document.addEventListener("DOMContentLoaded", () => {
         getUsers();
     });
