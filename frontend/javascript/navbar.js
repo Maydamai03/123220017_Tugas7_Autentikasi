@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </nav>
 
     <style>
-      /* styling navbar sama seperti sebelumnya */
       .navbar { background-color: rgb(2, 20, 38); }
       .navbar-item { color: rgb(249, 255, 191) !important; }
       .navbar-center {
@@ -79,25 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbarContainer = document.getElementById("navbar-container");
   navbarContainer.innerHTML = navbarHTML;
 
-  // Toggle hamburger menu
-  const burger = navbarContainer.querySelector(".navbar-burger");
-  const menu = navbarContainer.querySelector("#navbar-menu");
-  burger.addEventListener("click", () => {
-    menu.classList.toggle("is-active");
-  });
+  // Setelah DOM update, tambahkan event listener
+  setTimeout(() => {
+    const burger = navbarContainer.querySelector(".navbar-burger");
+    const menu = navbarContainer.querySelector("#navbar-menu");
 
-  // Logout event
-  const logoutBtn = navbarContainer.querySelector("#logoutBtn");
-  logoutBtn.addEventListener("click", async () => {
-    try {
-      await fetch(`${BASE_URL}/logout`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-    localStorage.removeItem("accessToken");
-    window.location.href = "/pages/login.html";
-  });
+    burger.addEventListener("click", () => {
+      menu.classList.toggle("is-active");
+    });
+
+    const logoutBtn = navbarContainer.querySelector("#logoutBtn");
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await fetch(`${BASE_URL}/logout`, {
+          method: "DELETE",
+          credentials: "include",
+        });
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+      localStorage.removeItem("accessToken");
+      window.location.href = "/pages/login.html";
+    });
+  }, 0); // ini yang bikin tombol bisa bekerja setelah HTML masuk ke DOM
 });
