@@ -1,5 +1,5 @@
 // const BASE_URL = "http://localhost:5000";
-// const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
+const BASE_URL = "https://be-notes-17-t7-296685597625.us-central1.run.app"; 
 
 // Ambil token dari localStorage
 const token = localStorage.getItem('accessToken');
@@ -22,22 +22,22 @@ if (!isTokenValid(token) && (window.location.pathname.includes('/pages/home.html
     window.location.href = '/pages/login.html';
 }
 
-// Fungsi logout jadinya di navbar.js, panggil API backend logout, hapus token, lalu redirect login
-// const logoutBtn = document.getElementById('logoutBtn');
-// if (logoutBtn) {
-//   logoutBtn.addEventListener('click', async () => {
-//     try {
-//       await fetch(`${BASE_URL}/logout`, {
-//         method: 'DELETE',
-//         credentials: 'include',  // penting supaya cookie refresh token ikut kehapus
-//       });
-//     } catch (error) {
-//       console.error("Logout error:", error);
-//     }
-//     localStorage.removeItem('accessToken');
-//     window.location.href = '/pages/login.html';
-//   });
-// }
+// Fungsi logout, panggil API backend logout, hapus token, lalu redirect login
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', async () => {
+    try {
+      await fetch(`${BASE_URL}/logout`, {
+        method: 'DELETE',
+        credentials: 'include',  // penting supaya cookie refresh token ikut kehapus
+      });
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+    localStorage.removeItem('accessToken');
+    window.location.href = '/pages/login.html';
+  });
+}
 
 // Fungsi ambil semua catatan
 async function getUsers() {
