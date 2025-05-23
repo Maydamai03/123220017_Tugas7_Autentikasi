@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a class="navbar-item has-text-black" href="about_us.html">About Me</a>
                     </div>
 
-                    <div class="n   avbar-end">
+                    <div class="navbar-end">
                         <div class="navbar-item">
                             <button id="logoutBtn" class="button is-danger has-text-white">Logout</button>
                         </div>
