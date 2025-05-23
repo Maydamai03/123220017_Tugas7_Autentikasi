@@ -9,24 +9,14 @@ if (!token && (window.location.pathname.includes('/pages/home.html') || window.l
     window.location.href = '/pages/login.html';
 }
 
-// // Fungsi untuk logout
-// const logoutBtn = document.getElementById('logoutBtn');
-// if (logoutBtn) {
-//     logoutBtn.addEventListener('click', () => {
-//         localStorage.removeItem('accessToken');
-//         window.location.href = '/pages/login.html';
-//     });
-// }
-
-logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("accessToken");
-
-    // Ambil path sekarang, lalu arahin ke login.html di folder yang sama
-    const currentPath = window.location.pathname;
-    const basePath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
-    window.location.href = basePath + "login.html";
-});
-
+// Fungsi untuk logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('accessToken');
+        window.location.href = '/pages/login.html';
+    });
+}
 
 // Fungsi ambil semua catatan
 async function getUsers() {
